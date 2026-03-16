@@ -1,0 +1,10 @@
+.git
+.github
+.gradle
+.idea
+.DS_Store
+**/venv/
+**/.venv/
+**/__pycache__/
+results/
+*.pdf
