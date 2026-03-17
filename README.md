@@ -7,6 +7,8 @@
 
 The only dependency you need is Docker (v27.4 or above). 
 
+The commands below are targeted for Unix systems.
+
 Please note that on some systems, Docker and Docker BuildX are packaged separately -- to build the image from scratch, you need Docker Buildx. On UNIX systems, your user should be added to the `docker` group to avoid needing `sudo` for Docker commands.
 
 
@@ -27,7 +29,7 @@ docker buildx build --platform linux/amd64 -t m3sa-experiment .
 ```
 
 
-####  Step 2 (short): Run the experiment from M3SA Article
+#### Step 2 (short): Run the experiment from M3SA Article
 
 You can now run the experiment(s) using the following command:
 
@@ -35,7 +37,7 @@ You can now run the experiment(s) using the following command:
 docker run --platform linux/amd64 --rm -v $(pwd):/app/reproduced m3sa-experiment experiment1
 ```
 
-####  Step 2 (long): Run all the M3SA Experiments (Article and Technical Report)
+#### Step 2 (long): Run all the M3SA Experiments (Article and Technical Report)
 
 ```bash
 docker run --platform linux/amd64 --rm -v $(pwd):/app/reproduced m3sa-experiment
@@ -48,11 +50,9 @@ docker run --platform linux/amd64 --rm -v $(pwd):/app/reproduced m3sa-experiment
 
 
 
-
-
-
-
-
+<br>
+<br>
+<br>
 
 
 ## Local setup
