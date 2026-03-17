@@ -55,6 +55,12 @@ main() {
         echo "M3SA JAR not found. Please run 'make build' first."
         exit 1
     fi
+    if [ ! -d "$M3SA_PY/venv" ]; then
+        echo "M3SA Python virtual environment not found. Please run 'make build' first."
+        exit 1
+    fi
+
+    . "$M3SA_PY/venv/bin/activate"
 
     to_run=("figure4" "figure6" "experiment1" "experiment2" "experiment3")
 
@@ -76,19 +82,19 @@ main() {
 }
 
 figure4() {
-  echo "Running figure 4..."
-  java -jar "$M3SA_OPENDC_JAR" --experiment-path "$FIGURE_4_SCENARIO1" -m "${FIGURE_4_SETUP1}" -e "$M3SA_PY" || exit 1
-  java -jar "$M3SA_OPENDC_JAR" --experiment-path "$FIGURE_4_SCENARIO2" -m "${FIGURE_4_SETUP2}" -e "$M3SA_PY" || exit 1
-  java -jar "$M3SA_OPENDC_JAR" --experiment-path "$FIGURE_4_SCENARIO3" -m "${FIGURE_4_SETUP3}" -e "$M3SA_PY" || exit 1
-  echo "Done figure 4."
+    echo "Running figure 4..."
+    java -jar "$M3SA_OPENDC_JAR" --experiment-path "$FIGURE_4_SCENARIO1" -m "${FIGURE_4_SETUP1}" -e "$M3SA_PY" || exit 1
+    java -jar "$M3SA_OPENDC_JAR" --experiment-path "$FIGURE_4_SCENARIO2" -m "${FIGURE_4_SETUP2}" -e "$M3SA_PY" || exit 1
+    java -jar "$M3SA_OPENDC_JAR" --experiment-path "$FIGURE_4_SCENARIO3" -m "${FIGURE_4_SETUP3}" -e "$M3SA_PY" || exit 1
+    echo "Done figure 4."
 }
 
 figure6() {
-  echo "Running figure 6..."
-  java -jar "$M3SA_OPENDC_JAR" --experiment-path "$FIGURE_6_SCENARIO" -m "${FIGURE_6_SETUP1}" -e "$M3SA_PY" || exit 1
-  java -jar "$M3SA_OPENDC_JAR" --experiment-path "$FIGURE_6_SCENARIO" -m "${FIGURE_6_SETUP20}" -e "$M3SA_PY" || exit 1
-  java -jar "$M3SA_OPENDC_JAR" --experiment-path "$FIGURE_6_SCENARIO" -m "${FIGURE_6_SETUP100}" -e "$M3SA_PY" || exit 1
-  echo "Done figure 6."
+    echo "Running figure 6..."
+    java -jar "$M3SA_OPENDC_JAR" --experiment-path "$FIGURE_6_SCENARIO" -m "${FIGURE_6_SETUP1}" -e "$M3SA_PY" || exit 1
+    java -jar "$M3SA_OPENDC_JAR" --experiment-path "$FIGURE_6_SCENARIO" -m "${FIGURE_6_SETUP20}" -e "$M3SA_PY" || exit 1
+    java -jar "$M3SA_OPENDC_JAR" --experiment-path "$FIGURE_6_SCENARIO" -m "${FIGURE_6_SETUP100}" -e "$M3SA_PY" || exit 1
+    echo "Done figure 6."
 }
 
 experiment1() {
@@ -134,9 +140,6 @@ experiment2() {
 
 experiment3() {
     echo "Running experiment 3..."
-    python3 -m venv .venv || exit 1
-    source .venv/bin/activate || exit 1
-    python3 -m pip install pandas seaborn pyarrow || exit 1
 
     mkdir -p "$EXP3_METAMODELS_PATH" || exit 1
     cp -r "$EXP3_METAMODELS_COLLECTION"/* "$EXP3_METAMODELS_PATH" || exit 1
@@ -146,7 +149,7 @@ experiment3() {
 }
 
 export_figures() {
-    mkdir -p reproduced/ 
+    mkdir -p reproduced/
     for figure in $(find results -iname "*.pdf" -o -iname "*.png"); do
         local destination="reproduced/$(basename "$figure")"
 
@@ -156,4 +159,3 @@ export_figures() {
 }
 
 main "$@"
-

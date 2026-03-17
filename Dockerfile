@@ -14,18 +14,19 @@ RUN apt-get update \
         unzip \
     && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /app
-COPY . .
+COPY . /app
 
 # Install M3SA requirements
+WORKDIR /app/bin/m3sa
 RUN python -m venv venv \
     && . venv/bin/activate \
     && pip install --upgrade pip \
-    && pip install -r bin/m3sa/requirements.txt
+    && pip install -r requirements.txt
 
-ENV VIRTUAL_ENV=/app/venv
+ENV VIRTUAL_ENV=/app/bin/m3sa/venv
 ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
 
+WORKDIR /app
 RUN chmod +x m3sa-experiment
 ENTRYPOINT ["/app/m3sa-experiment"]
 

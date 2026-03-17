@@ -16,6 +16,8 @@ all_metamodels = []
 countries_metamodels = []
 migration_metamodels = []
 
+os.makedirs("./results/figure-exports/", exist_ok=True)
+
 for file in os.listdir("./results/experiment3/metamodels/"):
     country_code = file[:2]
     if country_code == "EU":
