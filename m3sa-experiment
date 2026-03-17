@@ -55,10 +55,6 @@ main() {
         echo "M3SA JAR not found. Please run 'make build' first."
         exit 1
     fi
-    if [ ! -d "$M3SA_PY/venv" ]; then
-        echo "M3SA Python virtual environment not found. Please run 'make build' first."
-        exit 1
-    fi
 
     to_run=("figure4" "figure6" "experiment1" "experiment2" "experiment3")
 
@@ -150,9 +146,9 @@ experiment3() {
 }
 
 export_figures() {
-    mkdir -p figures || exit 1
+    mkdir reproduced/ 
     for figure in $(find raw-results -iname "*.pdf" -o -iname "*.png"); do
-        local destination="figures/$(basename "$figure")"
+        local destination="reproduced/$(basename "$figure")"
 
         echo "Exporting $figure..."
         cp "$figure" "$destination" || exit 1
