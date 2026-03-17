@@ -1,36 +1,59 @@
 # M3SA Reproducibility Capsule
 
-## Docker setup
+## Docker setup (recommended)
 
-To run on Docker, ensure that you have the `docker` command available on your system.
-On UNIX systems, your user should be added to the `docker` group to avoid needing `sudo` for Docker commands.
 
-First, build the Docker image using the provided `Dockerfile`:
+#### Step 0: Dependencies
+
+The only dependency you need is Docker (v27.4 or above). 
+
+Please note that on some systems, Docker and Docker BuildX are packaged separately -- to build the image from scratch, you need Docker Buildx. On UNIX systems, your user should be added to the `docker` group to avoid needing `sudo` for Docker commands.
+
+
+#### Step 1 (recommended): You use the pre-built Docker image:
 
 ```bash
-docker buildx build --platform linux/amd64 -t m3sa-experiment
+docker pull --platform linux/amd64 danielh911/m3sa:m3sa-experiment
+docker tag danielh911/m3sa:m3sa-experiment m3sa-experiment
 ```
 
-Alternatively, you can pull the pre-built image from Docker Hub:
 
-<!-- TODO: change danielh911 to Radu's Docker Hub username once the image is published. -->
+#### Step 1 (alternative): Build the Docker image using the provided `Dockerfile`:
+
 ```bash
-docker pull --platform linux/amd64 danielh911/m3sa:m3sa-experiment 
+git clone https://github.com/atlarge-research/opendc-m3sa-reproducibility-capsule.git
+cd opendc-m3sa-reproducibility-capsule
+docker buildx build --platform linux/amd64 -t m3sa-experiment .
 ```
+
+
+####  Step 2 (short): Run the experiment from M3SA Article
 
 You can now run the experiment(s) using the following command:
 
 ```bash
-docker run --rm -v $(pwd):/app/reproduced m3sa-experiment
+docker run --platform linux/amd64 --rm -v $(pwd):/app/reproduced m3sa-experiment experiment1
 ```
 
-You may additionally specify which experiment to run by providing the experiment name as an argument (from the list _figure4_, _figure6_, _experiment1_, _experiment2_, _experiment3_):
+####  Step 2 (long): Run all the M3SA Experiments (Article and Technical Report)
 
 ```bash
-# Example: run only the experiment for Experiment 1,
-# which produces figures A, B, and C in the paper
-docker run --rm -v $(pwd):/app/reproduced m3sa-experiment experiment1
+docker run --platform linux/amd64 --rm -v $(pwd):/app/reproduced m3sa-experiment
 ```
+
+#### Step 3: Find the reproduced results in the current working directory
+
+> Please note that the names of the figures match the figures from the technical report.
+> The figures `4A`, `4B`, `4C` from the M3SA article are figures `9A`, `9B`, `9C` from the output.
+
+
+
+
+
+
+
+
+
 
 ## Local setup
 
