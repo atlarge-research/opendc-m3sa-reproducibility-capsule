@@ -13,6 +13,7 @@ docker buildx build --platform linux/amd64 -t m3sa-experiment
 
 Alternatively, you can pull the pre-built image from Docker Hub:
 
+<!-- TODO: change danielh911 to Radu's Docker Hub username once the image is published. -->
 ```bash
 docker pull danielh911/m3sa:m3sa-experiment
 ```
