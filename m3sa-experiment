@@ -24,15 +24,15 @@ FIGURE_6_SETUP100="figures/figure6/inputs/m3saSetup100.json"
 # Paths to Experiment1 Footprinter -> Fig 9A
 EXP1_FOOTPRINTER_RAW="experiments/experiment1/footprinter/raw-output"
 EXP1_FOOTPRINTER_M3SA="experiments/experiment1/footprinter/m3saSetup.json"
-EXP1_FOOTPRINTER_RESULT="raw-results/experiment1/footprinter"
+EXP1_FOOTPRINTER_RESULT="results/experiment1/footprinter"
 # Paths to Experiment1 MultiModel -> Fig 9B
 EXP1_MULTIMODEL_SCENARIO="experiments/experiment1/multimodel/scenario.json"
 EXP1_MULTIMODEL_M3SA="experiments/experiment1/multimodel/m3saSetup.json"
-EXP1_MULTIMODEL_RESULT="raw-results/experiment1/multimodel"
+EXP1_MULTIMODEL_RESULT="results/experiment1/multimodel"
 # Paths to Experiment1 MetaModel -> Fig 9C
 EXP1_METAMODEL_SCENARIO="experiments/experiment1/metamodel/scenario.json"
 EXP1_METAMODEL_M3SA="experiments/experiment1/metamodel/m3saSetup.json"
-EXP1_METAMODEL_RESULT="raw-results/experiment1/metamodel"
+EXP1_METAMODEL_RESULT="results/experiment1/metamodel"
 
 EXP2_FAILURE_MODELS=("-failures" "-nofailures")
 EXP2_EXPERIMENTS=("marconi" "solvinity")
@@ -41,8 +41,8 @@ EXP2_M3SA_SETUP="experiments/experiment2/inputs"
 
 EXP3_SCENARIOS_PATH="experiments/experiment3/inputs/scenarios"
 EXP3_M3SA_SETUP="experiments/experiment3/inputs/m3saSetup.json"
-EXP3_SIMULATION_RESULTS_PATH="raw-results/experiment3/"
-EXP3_METAMODELS_PATH="raw-results/experiment3/metamodels"
+EXP3_SIMULATION_RESULTS_PATH="results/experiment3/"
+EXP3_METAMODELS_PATH="results/experiment3/metamodels"
 EXP3_PLOTTER_PATH="experiments/experiment3/scripts/main.py"
 EXP3_METAMODELS_COLLECTION="experiments/experiment3/metamodels"
 
@@ -146,8 +146,8 @@ experiment3() {
 }
 
 export_figures() {
-    mkdir reproduced/ 
-    for figure in $(find raw-results -iname "*.pdf" -o -iname "*.png"); do
+    mkdir -p reproduced/ 
+    for figure in $(find results -iname "*.pdf" -o -iname "*.png"); do
         local destination="reproduced/$(basename "$figure")"
 
         echo "Exporting $figure..."
