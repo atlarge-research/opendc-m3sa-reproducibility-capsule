@@ -15,7 +15,7 @@ Alternatively, you can pull the pre-built image from Docker Hub:
 
 <!-- TODO: change danielh911 to Radu's Docker Hub username once the image is published. -->
 ```bash
-docker pull danielh911/m3sa:m3sa-experiment
+docker pull --platform linux/amd64 danielh911/m3sa:m3sa-experiment 
 ```
 
 You can now run the experiment(s) using the following command:
