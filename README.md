@@ -5,7 +5,7 @@
 
 #### Step 0: Dependencies
 
-The only dependency you need is Docker (v27.4 or above). 
+The only dependency you need is Docker (v27.4 or above). Quick download link: [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/).
 
 The commands below are targeted for Unix systems.
 
