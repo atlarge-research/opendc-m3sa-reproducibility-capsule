@@ -15,8 +15,8 @@ Please note that on some systems, Docker and Docker BuildX are packaged separate
 #### Step 1 (recommended): You use the pre-built Docker image:
 
 ```bash
-docker pull --platform linux/amd64 danielh911/m3sa:m3sa-experiment
-docker tag danielh911/m3sa:m3sa-experiment m3sa-experiment
+docker pull --platform linux/amd64 radu33/m3sa:m3sa-experiment
+docker tag radu33/m3sa:m3sa-experiment m3sa-experiment
 ```
 
 
